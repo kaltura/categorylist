@@ -20,7 +20,22 @@
 	
 	<?php 
 		include_once('getKalturaPlaylist.php');
-		$playlist = getKalturaPlaylist( $partnerId, $_GET['kmsuser'], $_GET['kmscategory'], $adminAPISecretKey );
+		$category = '';
+		if (isset($_GET['kmscategory']))
+			$category = $_GET['kmscategory'];
+		else if (isset($_GET['category']))
+			$category = $_GET['kmscategory'];
+		$user = '';
+		if (isset($_GET['kmsuser']))
+			$user = $_GET['kmsuser'];
+		else if (isset($_GET['user']))
+			$user = $_GET['user'];
+		$categoryReferenceId = '';
+		if (isset($_GET['catRefId']))
+			$categoryReferenceId = $_GET['catRefId'];
+		else if (isset($_GET['referenceId']))
+			$categoryReferenceId = $_GET['referenceId'];
+		$playlist = getKalturaPlaylist( $partnerId, $adminAPISecretKey, $user, $category, $categoryReferenceId);
 	?>
 	<ul class="thumbnails">
 	<?php 
